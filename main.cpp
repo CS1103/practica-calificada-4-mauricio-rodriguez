@@ -5,7 +5,7 @@ int main()
 {
     unsigned int w;
     unsigned int h;
-    auto image = decode("in.png", w, h);
+    auto image = decode("../in.png", w, h);
     //green_filter(image,w,h);
     green_filter(image,w,h);
     //blue_filter(image,w,h);
