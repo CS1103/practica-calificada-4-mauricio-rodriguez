@@ -33,19 +33,20 @@ void red_filter(vector<unsigned char> imagen,size_t w,size_t h) {
     Filter(imagen,w,h,a,b,path);
 }
 void blue_filter(vector<unsigned char> imagen,size_t w,size_t h) {
-    int a=0;int b=2; string path = "../blue_filter.png";
+    int a=0;int b=1; string path = "../blue_filter.png";
     Filter(imagen,w,h,a,b,path);
 }
 void rotate(vector<unsigned char> imagen,size_t w,size_t h) {
-    auto temp = imagen;
+    vector<unsigned char>temp;
     for (size_t i = 0; i < h; i++) {
         for (size_t j = 0; j < w * 4; j += 4) {
-            temp[(i*w*4+j+0)*sin(45)]=temp[i * w * 4 + j + 0]; // Red component
-            temp[(i*w*4+j+1)*sin(45)]=temp[i * w * 4 + j + 1];
-            temp[(i*w*4+j+2)*sin(45)]=temp[i * w * 4 + j + 2];
-            temp[(i*w*4+j+3)*sin(45)]=temp[i * w * 4 + j + 3];
+            temp.push_back(imagen[(i * w * 4 + j + 0)*cos(45)]); // Red component
+            temp.push_back(imagen[(i * w * 4 + j + 1)*cos(45)]);
+            temp.push_back(imagen[(i * w * 4 + j + 2)*cos(45)]);
+            temp.push_back(imagen[(i * w * 4 + j + 3)*sin(45)]);
         }
     }
-    encode("rotated.png",temp,w,h);
+    encode("../rotated.png",temp,w,h);
+
 }
 
